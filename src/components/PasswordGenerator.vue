@@ -1,6 +1,6 @@
 <template>
   <div class="card shadow-md">
-    <div class="max-h-min">
+    <div class="h-full">
       <div class="flex flex-col p-7 justify-center">
         <InputRange
           v-model="passwordLength"
@@ -84,6 +84,7 @@ const generatePassword = () => {
   }
 
   for (let i = 0; i < passwordLength.value; i++) {
+    
     password.value += charset.value.charAt(Math.floor(Math.random() * charset.value.length));
   }
   rows.value = Math.ceil(passwordLength.value / 20);
@@ -95,15 +96,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.card {
-  background-color: #efefef;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-  border: 1px solid black;
-  height: 45%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+
 
 label {
   color: black;
