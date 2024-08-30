@@ -11,11 +11,15 @@
       <PasswordGenerator />
     </div>
   </div>
+  <div className="h-px bg-gray-200 -mt-10" />
+  <div class="flex w-[90vw] text-center align-middle justify-center">
+    <WhyToUse />
   </div>
 </template>
 
 <script setup lang="ts">
 import PasswordGenerator from "../components/PasswordGenerator.vue";
+import WhyToUse from "../components/WhyToUse.vue";
 </script>
 
 <style scoped></style>
