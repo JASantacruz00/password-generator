@@ -1,6 +1,6 @@
 <template>
   <div class="w-full max-w-md mx-auto">
-    <label :for="id" class="text-sm font-medium text-gray-700">
+    <label :for="id" class="text-md font-semibold text-gray-700">
       {{ label }} {{ modelValue }}
     </label>
     <div class="flex items-center space-x-4">
@@ -17,7 +17,7 @@
         />
         <div
           class="absolute left-0 top-3.5 h-2 bg-blue-500 rounded-l-lg pointer-events-none border-right slider-track"
-          :style="{ width: 'calc(' + percentage + ' )' }"
+          :style="{ width: percentage }"
         ></div>
       </div>
     </div>
@@ -60,30 +60,24 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const percentage = computed(() => {
-  let porcentage = (props.modelValue - props.min) / (props.max - props.min);
-  // Coger el width del thumb del input range para restarlo con javascript
+const thumbWidth = 20; // Ancho del thumb en píxeles
+const trackWidth = 100; // Asumiendo que el track ocupa el 100% del ancho
 
-  // Calcular el porcentaje que debe ocupar quitando el ancho del thumb de la barra
-  porcentage = porcentage * 100 - 1;
-  return porcentage + "%";
+const percentage = computed(() => {
+  const rawPercentage = (props.modelValue - props.min) / (props.max - props.min) * 100;
+  const thumbOffset = (thumbWidth / 2);
+
+  const correctedPercentage = rawPercentage * (trackWidth - thumbOffset) / trackWidth + thumbOffset;
+
+  // return `calc(${correctedPercentage}% - ${thumbWidth}px)` ;
+  return `calc(${rawPercentage}% - ${(rawPercentage / 100) * thumbWidth}px + 1px)`;
 });
+
+
 
 const updateValue = (event) => {
   const newValue = Number(event.target.value);
   emit("update:modelValue", newValue);
-  error.value = "";
-};
-
-const updateFromText = (event) => {
-  const inputValue = event.target.value;
-  if (inputValue === "") return;
-
-  const newValue = Number(inputValue);
-  if (!isNaN(newValue)) {
-    emit("update:modelValue", Math.min(Math.max(newValue, props.min), props.max));
-    error.value = "";
-  }
 };
 </script>
 

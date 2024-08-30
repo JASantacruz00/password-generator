@@ -12,13 +12,13 @@
           @update:modelValue="onChangeLengthValue"
         />
         <div class="options">
-          <div class="grid grid-cols-2 gap-2">
-            <div class="flex items-center space-x-2">
-              <input v-model="options.numbers" type="checkbox" class="form-checkbox" />
+          <div class="grid grid-cols-2 gap-16">
+            <div class="flex items-center justify-end space-x-2">
+              <input v-model="options.numbers" type="checkbox" class="w-4 h-4 form-checkbox" />
               <label>Numbers</label>
             </div>
             <div class="flex items-center space-x-2">
-              <input v-model="options.symbols" type="checkbox" class="form-checkbox" />
+              <input v-model="options.symbols" type="checkbox" class="w-4 h-4 form-checkbox" />
               <label>Symbols</label>
             </div>
           </div>
@@ -27,7 +27,7 @@
       <input
         type="button"
         value="Generate"
-        class="bg-blue-700 border border-solid px-3 mb-2 border-white rounded cursor-pointer"
+        class="bg-blue-700 border border-solid px-3 py-2 mb-3 border-white rounded cursor-pointer"
         @click="generatePassword"
       />
       <input
@@ -38,6 +38,7 @@
       ></input>
       <PasswordStrength 
         :password="password"
+        class='mt-5'
       />
     </div>
   </div>
@@ -100,7 +101,7 @@ onMounted(() => {
   padding: 20px;
   margin: 20px;
   border: 1px solid black;
-  height: 25%;
+  height: 45%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

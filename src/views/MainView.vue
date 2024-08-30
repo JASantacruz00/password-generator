@@ -1,15 +1,17 @@
 <template>
-  <div class="flex">
-    <div class="flex flex-col w-min text-center align-middle justify-center">
-      <h1 class="text-center justify-center font-bold align-middle items-center h-max">
+  <div class="grid grid-flow-col grid-cols-12 h-screen w-screen">
+    <div class="col-span-6 flex flex-col justify-center pl-64 mb-36">
+      <h1 class="text-center font-bold text-8xl mb-12">
         Password Generator.
       </h1>
-      <p class="font-semibold">
+      <h2 class="font-semibold text-xl">
         Create strong, secure passwords with ease. Customize your password settings and
         generate unbreakable codes in seconds.
-      </p>
+      </h2>
     </div>
+    <div class="col-span-6 flex flex-col justify-center pr-64">
     <PasswordGenerator />
+  </div>
   </div>
 </template>
 
