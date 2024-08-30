@@ -12,7 +12,7 @@
     </div>
   </div>
   <div className="h-px bg-gray-200 -mt-10" />
-  <div class="flex w-[90vw] text-center align-middle justify-center">
+  <div class="flex w-full text-center align-middle justify-center">
     <WhyToUse />
   </div>
 </template>
