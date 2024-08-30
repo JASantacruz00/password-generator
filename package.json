@@ -1,8 +1,9 @@
 {
-  "name": "password-generator",
+  "name": "RandPass",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "author": "jsantacgdev",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
