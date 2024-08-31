@@ -1,6 +1,6 @@
 <template>
   <div class="w-full max-w-md mx-auto">
-    <label :for="id" class="text-md font-semibold text-gray-700">
+    <label :for="id" class="text-xl font-semibold text-gray-700">
       {{ label }} {{ modelValue }}
     </label>
     <div class="flex items-center space-x-4">
@@ -64,16 +64,18 @@ const thumbWidth = 20; // Ancho del thumb en píxeles
 const trackWidth = 100; // Asumiendo que el track ocupa el 100% del ancho
 
 const percentage = computed(() => {
-  const rawPercentage = (props.modelValue - props.min) / (props.max - props.min) * 100;
-  const thumbOffset = (thumbWidth / 2);
+  const rawPercentage =
+    ((props.modelValue - props.min) / (props.max - props.min)) * 100;
+  const thumbOffset = thumbWidth / 2;
 
-  const correctedPercentage = rawPercentage * (trackWidth - thumbOffset) / trackWidth + thumbOffset;
+  const correctedPercentage =
+    (rawPercentage * (trackWidth - thumbOffset)) / trackWidth + thumbOffset;
 
   // return `calc(${correctedPercentage}% - ${thumbWidth}px)` ;
-  return `calc(${rawPercentage}% - ${(rawPercentage / 100) * thumbWidth}px + 1px)`;
+  return `calc(${rawPercentage}% - ${
+    (rawPercentage / 100) * thumbWidth
+  }px + 1px)`;
 });
-
-
 
 const updateValue = (event) => {
   const newValue = Number(event.target.value);
