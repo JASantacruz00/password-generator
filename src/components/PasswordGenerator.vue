@@ -38,7 +38,7 @@
       ></input>
       <PasswordStrength 
         :password="password"
-        class='mt-5'
+        class='mt-5 pb-8'
       />
     </div>
   </div>
