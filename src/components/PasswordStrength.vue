@@ -28,10 +28,9 @@ const props = defineProps({
 
 const calculatePasswordStrength = (password) => {
   let strength = 0;
-  if (password.length >= 8) strength++;
-  if (password.length >= 12) strength++;
-  if (/[A-Z]/.test(password)) strength++;
-  if (/[a-z]/.test(password)) strength++;
+  if (password.length >= 10) strength++;
+  if (password.length >= 14) strength++;
+  if (/[A-Za-z]/.test(password)) strength++;
   if (/[0-9]/.test(password)) strength++;
   if (/[^A-Za-z0-9]/.test(password)) strength++;
   return strength;
@@ -39,7 +38,7 @@ const calculatePasswordStrength = (password) => {
 
 const strength = computed(() => calculatePasswordStrength(props.password));
 
-const strengthPercentage = computed(() => (strength.value / 6) * 100);
+const strengthPercentage = computed(() => (strength.value / 5) * 100);
 
 const strengthLabel = computed(() => {
   if (strength.value <= 2) return "Weak";
