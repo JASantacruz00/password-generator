@@ -48,7 +48,7 @@
             readonly
           />
           <button
-            class="text-black absolute right-0 top-0 h-full px-3 group"
+            class="text-black absolute right-0 top-0 h-full px-3 group hover:scale-125"
             @click="onClickCopyToClipboard"
           >
             <i class="fa-regular fa-clipboard"></i>
