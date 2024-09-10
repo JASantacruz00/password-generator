@@ -39,6 +39,31 @@
           class="bg-blue-700 w-24 border border-solid px-3 py-2 mb-3 border-white rounded cursor-pointer"
           @click="generatePassword"
         />
+        <div class="relative w-96">
+          <input
+            v-model="password"
+            id="password"
+            class="w-full text-black border border-black p-2 rounded"
+            type="text"
+            readonly
+          />
+          <button
+            class="text-black absolute right-0 top-0 h-full px-3 group"
+            @click="onClickCopyToClipboard"
+          >
+            <i class="fa-regular fa-clipboard"></i>
+            <div
+              class="absolute bottom-full hidden group-hover:block w-max text-white text-xs rounded py-2 px-3"
+              :class="
+                passwordCopiedText == 'Copy to clipboard'
+                  ? 'bg-gray-500'
+                  : 'bg-green-500'
+              "
+            >
+              {{ passwordCopiedText }}
+            </div>
+          </button>
+        </div>
       </div>
       <PasswordStrength :password="password" class="mt-5 pb-8" />
     </div>
@@ -60,6 +85,7 @@ const charset: Ref<string> = ref(
 const numbers: Ref<string> = ref("0123456789");
 const symbols: Ref<string> = ref("!@#$%^&*()_+-=[]{}|;:,.<>?");
 
+const passwordCopiedText: Ref<string> = ref("Copy to clipboard");
 
 const options: Ref<IOptions> = ref({
   numbers: false,
@@ -76,6 +102,8 @@ const onChangeLengthValue = () => {
 };
 
 const generatePassword = () => {
+  password.value = "";
+  passwordCopiedText.value = "Copy to clipboard";
   charset.value = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   if (options.value.numbers) {
@@ -91,6 +119,11 @@ const generatePassword = () => {
     );
   }
   rows.value = Math.ceil(passwordLength.value / 20);
+};
+
+const onClickCopyToClipboard = () => {
+  navigator.clipboard.writeText(password.value);
+  passwordCopiedText.value = "Password copied to clipboard!";
 };
 
 onMounted(() => {
