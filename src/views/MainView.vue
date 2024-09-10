@@ -15,11 +15,11 @@
   <div class="flex w-full text-center align-middle justify-center">
     <WhyToUse />
   </div>
+  <Footer />
 </template>
 
 <script setup lang="ts">
 import PasswordGenerator from "../components/PasswordGenerator.vue";
 import WhyToUse from "../components/WhyToUse.vue";
+import Footer from "../components/Footer.vue";
 </script>
-
-<style scoped></style>
