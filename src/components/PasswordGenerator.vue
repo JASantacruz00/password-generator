@@ -14,32 +14,33 @@
         <div class="options">
           <div class="grid grid-cols-2 gap-16">
             <div class="flex items-center justify-end space-x-2">
-              <input v-model="options.numbers" type="checkbox" class="w-4 h-4 form-checkbox" />
-              <label>Numbers</label>
+              <input
+                v-model="options.numbers"
+                type="checkbox"
+                class="w-4 h-4 form-checkbox"
+              />
+              <label class="text-black">Numbers</label>
             </div>
             <div class="flex items-center space-x-2">
-              <input v-model="options.symbols" type="checkbox" class="w-4 h-4 form-checkbox" />
-              <label>Symbols</label>
+              <input
+                v-model="options.symbols"
+                type="checkbox"
+                class="w-4 h-4 form-checkbox"
+              />
+              <label class="text-black">Symbols</label>
             </div>
           </div>
         </div>
       </div>
-      <input
-        type="button"
-        value="Generate"
-        class="bg-blue-700 border border-solid px-3 py-2 mb-3 border-white rounded cursor-pointer"
-        @click="generatePassword"
-      />
-      <input
-        v-model="password"
-        class="w-full text-black border border-black p-2 rounded"
-        type="text"
-        readonly
-      ></input>
-      <PasswordStrength 
-        :password="password"
-        class='mt-5 pb-8'
-      />
+      <div class="flex flex-col justify-center items-center">
+        <input
+          type="button"
+          value="Generate"
+          class="bg-blue-700 w-24 border border-solid px-3 py-2 mb-3 border-white rounded cursor-pointer"
+          @click="generatePassword"
+        />
+      </div>
+      <PasswordStrength :password="password" class="mt-5 pb-8" />
     </div>
   </div>
 </template>
@@ -48,12 +49,14 @@
 import { ref, type Ref, onMounted } from "vue";
 import { IOptions } from "../shared/types/types";
 import PasswordStrength from "./PasswordStrength.vue";
-import InputRange from '../shared/components/InputRange.vue'
+import InputRange from "../shared/components/InputRange.vue";
 
 const password: Ref<string> = ref("");
 const passwordLength: Ref<number> = ref(16);
 const rows: Ref<number> = ref(1);
-const charset: Ref<string> = ref("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+const charset: Ref<string> = ref(
+  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+);
 const numbers: Ref<string> = ref("0123456789");
 const symbols: Ref<string> = ref("!@#$%^&*()_+-=[]{}|;:,.<>?");
 
@@ -70,10 +73,9 @@ const onChangeLengthValue = () => {
   if (passwordLength.value > 32) {
     passwordLength.value = 32;
   }
-}
+};
 
 const generatePassword = () => {
-  password.value = ""
   charset.value = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   if (options.value.numbers) {
@@ -84,21 +86,14 @@ const generatePassword = () => {
   }
 
   for (let i = 0; i < passwordLength.value; i++) {
-    
-    password.value += charset.value.charAt(Math.floor(Math.random() * charset.value.length));
+    password.value += charset.value.charAt(
+      Math.floor(Math.random() * charset.value.length)
+    );
   }
   rows.value = Math.ceil(passwordLength.value / 20);
-}
+};
 
 onMounted(() => {
   generatePassword();
 });
 </script>
-
-<style scoped>
-
-
-label {
-  color: black;
-}
-</style>
